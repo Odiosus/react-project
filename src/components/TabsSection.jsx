@@ -2,7 +2,7 @@ import Button from "./Button/Button.jsx";
 
 export default function TabsSection({active, onChange}) {
   return (
-    <section>
+    <section className="section-button">
       <Button
         isActive = {active === 'main'}
         onClick = {() => onChange('main')}
