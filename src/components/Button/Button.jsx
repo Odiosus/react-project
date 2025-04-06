@@ -1,6 +1,6 @@
 import classes from "./Button.module.css";
 
-function Button({children, onClick, isActive}) {
+function Button({children, isActive, ...props}) {
 
   /*let classesButton = 'button'
   if (isActive) {
@@ -10,10 +10,10 @@ function Button({children, onClick, isActive}) {
   return (
     <button
       // className={classesButton}
+      {...props}
       className = {isActive
         ? `${classes.button} ${classes.active}`
         : classes.button}
-      onClick = {onClick}
     >
       {children}
     </button>

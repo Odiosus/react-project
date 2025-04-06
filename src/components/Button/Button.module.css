@@ -16,3 +16,7 @@
   background: #3e6ae1;
   color: #cccccc;
 }
+
+.button:disabled {
+  cursor: not-allowed;
+}
