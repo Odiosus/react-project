@@ -1,11 +1,39 @@
 import Button from "./Button/Button.jsx";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
+// компонент с инпутом ввода текста по нажатию Enter
+function StateVsRef() {
+
+  // состояние юз.реф на инпут
+  const input = useRef()
+  const [show, setShow] = useState(false)
+
+  // устанавливаем смену состояния после нажатия Энтер
+  function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+      setShow(true)
+    }
+  }
+
+  return (
+    <div>
+      <h3>Input value: {show && input.current.value}</h3>
+      <input
+        ref = {input}
+        type = "text"
+        className = 'control'
+        onKeyDown = {handleKeyDown}
+      />
+    </div>
+  )
+}
+
+// компонент фидбэка
 export default function FeedbackSection() {
 
   const [form, setForm] = useState({
     name: "",
-    hasError: true,
+    hasError: false,
     reason: "help",
   })
 
@@ -33,7 +61,10 @@ export default function FeedbackSection() {
 
       {/*<Button onClick = {toggleError}>Toggle Error</Button>*/}
 
-      <form action = "">
+      <form
+        action = ""
+        style = {{marginBottom: '1rem'}}
+      >
         <label htmlFor = "name">Ваше имя</label>
         <input
           type = "text"
@@ -78,6 +109,8 @@ export default function FeedbackSection() {
           Отправить
         </Button>
       </form>
+
+      <StateVsRef/>
     </section>
   )
 }
