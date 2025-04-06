@@ -20,13 +20,16 @@ export default function EffectSection() {
         Открыть информацию
       </Button>
 
-      <Modal open={isModalOpen}>
+      <Modal open = {isModalOpen}>
         <h3>Hello from modal!</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet at cupiditate deserunt enim harum
           impedit ipsum iusto labore laboriosam magnam necessitatibus nemo, nesciunt nulla numquam quasi recusandae
           repellendus, repudiandae!
         </p>
+        <Button onClick = {() => setIsModalOpen( false )}>
+          Close modal
+        </Button>
       </Modal>
     </section>
   )
