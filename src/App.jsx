@@ -9,15 +9,22 @@ import EffectSection from "./components/EffectSection.jsx";
 
 
 function App() {
-  const [tab, setTab] = useState('effect')
+
+  const [visible, setVisible] = useState(true)
+  const [tab, setTab] = useState( 'effect' )
+
+  /*setTimeout( () => {
+    setVisible(false)
+  }, 3000)*/
+
 
   return (
     <>
-      <Header/>
+      {visible && <Header/>}
       <main>
         <IntroSection/>
         <TabsSection active = {tab}
-                     onChange = {(current) => setTab(current)}/>
+          onChange = {( current ) => setTab( current )}/>
 
         {tab === 'main' && (
           <>

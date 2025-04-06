@@ -2,6 +2,7 @@ import logo from "/logo-name.svg"
 // import './Header.css'
 
 import { styled } from "styled-components";
+import { useEffect, useState } from "react";
 
 const HeaderComponent = styled.header`
   height: 50px;
@@ -17,7 +18,19 @@ const HeaderComponent = styled.header`
 function Header() {
 
   const imageName = "Логотип университета"
-  const timeNow = new Date()
+  // состояние отображения времени
+  const [now, setNow] = useState( new Date() )
+
+  // ЮЭ обновления времени и очистки интервала
+  useEffect( () => {
+    const interval = setInterval( () => setNow( new Date() ), 1000 )
+
+    return () => {
+      clearInterval( interval )
+    }
+  }, [] );
+
+  // const timeNow = new Date()
 
   return (
     <HeaderComponent>
@@ -31,7 +44,7 @@ function Header() {
       />
       <h3>Result university</h3>
       {/*<span>Текущая дата: {timeNow.toLocaleDateString()}</span>*/}
-      <span>Текущее время: {timeNow.toLocaleTimeString()}</span>
+      <span>Текущее время: {now.toLocaleTimeString()}</span>
     </HeaderComponent>
   )
 }
