@@ -1,9 +1,12 @@
 import Button from "./Button/Button.jsx";
 import Modal from "./Modal/Modal.jsx";
 import { useCallback, useEffect, useState } from "react";
+import useInput from "../hooks/useInput.js";
 
 export default function EffectSection() {
 
+  // устанавливаем кастомный хук
+  const input = useInput()
   // состояние модального окна по умолчанию — скрыто (false)
   const [isModalOpen, setIsModalOpen] = useState(false)
   // состояние загрузки, по умолчанию false
@@ -57,9 +60,27 @@ export default function EffectSection() {
       </Modal>
 
       {loading && <p>Loading...</p>}
-      {!loading && <ul>
-        {users.map(user => <li key = {user.id}>{user.name}</li>)}
-      </ul>}
+
+      {!loading && (
+        <>
+          <input
+            type = "text"
+            className = 'control'
+            // разворачиваем кастомный инпут-хук
+            {...input}
+          />
+          <h6>{input.value}</h6>
+          <ul>
+            {/*добавляем фильтрацию*/}
+            {users.filter(
+              user => user.name.toLowerCase().includes(
+                input.value.toLowerCase())).map((user) => (
+                  // отображаем всех, если неотфильтровано через фильтр
+                  <li key = {user.id}>{user.name}</li>
+            ))}
+          </ul>
+        </>
+      )}
     </section>
   )
 }
